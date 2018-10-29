@@ -25,7 +25,7 @@ export class RedditService {
 
   changeSubreddit(sb: string): void {
     this.settings.subreddit = sb;
-    this.resetPost();
+    this.resetPosts();
   }
 
   fecthData(): void {
