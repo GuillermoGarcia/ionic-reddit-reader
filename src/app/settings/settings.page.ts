@@ -10,10 +10,8 @@ import { ModalController } from '@ionic/angular';
 })
 export class SettingsPage {
 
-  constructor(
-    public redditService: RedditService,
-    private dataService: DataService,
-    private modalController: ModalController) { }
+  constructor( public redditService: RedditService, private dataService: DataService,
+               private modalController: ModalController) { }
 
   guardar(): void {
     this.dataService.saveData(this.redditService.settings);
