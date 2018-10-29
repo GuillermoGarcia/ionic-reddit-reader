@@ -121,14 +121,14 @@ export class RedditService {
   }
 
   nextPage(): void {
-    this.after = null;
     this.page++;
-    this.posts = [];
     this.fecthData();
   }
 
   resetPosts(): void {
+    this.after = null;
     this.page = 1;
+    this.posts = [];
     this.fecthData();
   }
 }
