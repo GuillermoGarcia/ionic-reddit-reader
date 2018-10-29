@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { RedditService } from '../services/reddit.service';
-import { DataService } from "../services/data.service";
 import { FormGroup, FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
+
+import { DataService } from "../services/data.service";
+import { SettingsPage } from "../settings/settings.page";
+// Browser del dispositivo
+import { Plugins } from '@capacitor/core';
+const { Browser } = Plugins;
 
 
 @Component({
@@ -45,14 +51,31 @@ export class HomePage implements OnInit {
 
 
   openSettings(): void {
-    
+    this.modalController.create({
+      component: SettingsPage
+    }).then((modal) => {
+      modal.onDidDismiss().then(() => {
+        this.redditService.resetPosts();
+      });
+      modal.present();
+    });
   }
 
   playVideo(e, post): void{
+    console.log(e);
+
+    const video = e.target;
+    if (video.paused){ video.play(); }
+    else { video.pause(); }
 
   }
 
   showComments(post): void{
+    Browser.open({
+      toolbarColor: '#fff',
+      url: 'http://reddit.com' + post.data.permalink,
+      windowName: '_system',
+    });
 
   }
 

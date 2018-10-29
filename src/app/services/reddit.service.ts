@@ -21,10 +21,11 @@ export class RedditService {
   private after: string;
   private moreCount = 0;
 
-  constructor(private data: DataService, private httpClient: HttpClient) { }
+  constructor(private dataService: DataService, private httpClient: HttpClient) { }
 
   changeSubreddit(sb: string): void {
     this.settings.subreddit = sb;
+    this.resetPost();
   }
 
   fecthData(): void {
@@ -109,15 +110,25 @@ export class RedditService {
   }
 
   load(): void {
-    this.fecthData();
+    this.dataService.getData().then(
+      (settings) => { 
+        if (settings != null){
+          this.settings = settings;
+        }
+        this.fecthData();
+      }
+    );
   }
 
   nextPage(): void {
+    this.after = null;
     this.page++;
+    this.posts = [];
     this.fecthData();
   }
 
-  resetPost(): void {
-
+  resetPosts(): void {
+    this.page = 1;
+    this.fecthData();
   }
 }

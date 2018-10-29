@@ -1,1 +1,6 @@
-ion-list-header{ text-align: left; }
+ion-content button { margin: 0px !important; }
+ion-item { --inner-padding-end: 0; --padding-start: 0; }
+ion-list-header { background-color: #fff !important; margin-bottom: 0px !important; text-align: left; }
+ion-searchbar { --ion-background-color: #fff; }
+ion-spinner { margin: auto; }
+video { background-color: #000; height: auto; margin: auto; max-width: 100%; }
