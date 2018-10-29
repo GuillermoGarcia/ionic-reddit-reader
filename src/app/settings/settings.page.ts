@@ -15,16 +15,16 @@ export class SettingsPage {
     private dataService: DataService,
     private modalController: ModalController) { }
 
-  save(): void {
+  guardar(): void {
     this.dataService.saveData({
       perPage: this.redditService.settings.perPage,
       sort: this.redditService.settings.sort,
       subreddit: this.redditService.settings.subreddit
     });
-    this.close();
+    this.cerrar();
   }
 
-  close(): void {
+  cerrar(): void {
     this.modalController.dismiss();
   }
 }
