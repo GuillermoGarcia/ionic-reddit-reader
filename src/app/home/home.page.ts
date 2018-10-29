@@ -54,9 +54,7 @@ export class HomePage implements OnInit {
     this.modalController.create({
       component: SettingsPage
     }).then((modal) => {
-      modal.onDidDismiss().then(() => {
-        this.redditService.resetPosts();
-      });
+      modal.onDidDismiss().then(() => this.redditService.resetPosts() );
       modal.present();
     });
   }
